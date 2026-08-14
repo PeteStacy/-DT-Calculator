@@ -23,15 +23,20 @@ input,select{width:100%;box-sizing:border-box;font-size:18px;padding:12px;border
 select.unitsel{font-size:13px;padding:8px 6px}
 .unit{font-size:14px;color:#4b5563;align-self:center}
 .density-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
-.density-row .row{grid-template-columns:1fr 65px;gap:5px}
+.density-row .row{grid-template-columns:1fr 82px;gap:5px}
 .clear{width:100%;border:0;border-radius:10px;padding:12px;margin-top:12px;font-weight:700;font-size:15px;background:#e5e7eb}
 .formula{text-align:center;background:#f9fafb;padding:14px;border-radius:12px;line-height:1.8}.note{text-align:center;color:#6b7280;font-size:12px;margin-top:10px}
+.frac-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:nowrap;margin:14px 0}
+.frac-label{font-weight:700;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;align-items:center}
+.frac-num,.frac-den{padding:2px 4px;white-space:nowrap;font-size:14px}
+.frac-bar{border-top:2px solid #111827;width:100%}
 .hidden{display:none!important}
 
 .solve-row{width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#f3f4f6;border:0;border-radius:12px;margin-bottom:14px;text-align:left;cursor:pointer}
-.solve-row-label{display:block;font-size:11px;color:#6b7280;margin-bottom:2px}
+.solve-heading{font-size:17px;font-weight:800;color:#111827;margin:14px 0 8px}
 .solve-row-value{display:block;font-size:15px;font-weight:700;color:#111827}
-.chevron{color:#9ca3af}
+.chevron{color:#9ca3af;font-size:24px;line-height:1}
 
 .hero-card{background:#111827;border-radius:16px;padding:16px;margin-bottom:16px}
 .hero-label{font-size:12px;font-weight:700;color:#cbd5e1}
@@ -49,11 +54,16 @@ select.unitsel{font-size:13px;padding:8px 6px}
 .switch-slider:before{position:absolute;content:"";height:16px;width:16px;left:3px;bottom:3px;background:#fff;transition:.2s;border-radius:50%}
 .switch input:checked + .switch-slider{background:#fff}
 .switch input:checked + .switch-slider:before{transform:translateX(16px);background:#111827}
-.tile-switch-row .switch-slider{background:#d1d5db}
-.tile-switch-row .switch-slider:before{background:#fff}
-.tile-switch-row .switch input:checked + .switch-slider{background:#111827}
-.tile-switch-row .switch input:checked + .switch-slider:before{background:#fff}
-.switch-row{display:flex;align-items:center;gap:8px}
+.tile-switch-row .switch-slider,.compare-row .switch-slider,.light-switch.switch-slider,.light-switch .switch-slider{background:#d1d5db}
+.tile-switch-row .switch-slider:before,.compare-row .switch-slider:before,.light-switch .switch-slider:before{background:#fff}
+.tile-switch-row .switch input:checked + .switch-slider,.compare-row .switch input:checked + .switch-slider,.light-switch input:checked + .switch-slider{background:#111827}
+.tile-switch-row .switch input:checked + .switch-slider:before,.compare-row .switch input:checked + .switch-slider:before,.light-switch input:checked + .switch-slider:before{background:#fff}
+.compare-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 14px}
+.info-btn{border:0;background:#e5e7eb;color:#6b7280;width:20px;height:20px;border-radius:50%;font-size:13px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;flex-shrink:0}
+.switch-state-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.switch-state-row span{font-size:13px;font-weight:700;color:#374151}
+.compare-row span{font-size:13px;font-weight:700;color:#374151}
+.switch-row{display:flex;align-items:center;gap:8px;margin-top:12px}
 .switch-row span{font-size:13px;font-weight:700;color:#fff}
 
 .kv-label{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;color:#111827;margin-bottom:10px}
@@ -63,12 +73,14 @@ select.unitsel{font-size:13px;padding:8px 6px}
 .field-tile.span2{grid-column:span 2}
 .ft-head{font-size:12px;font-weight:700;color:#4b5563;margin-bottom:4px}
 .tile-input{background:transparent!important;border:none!important;padding:2px 0!important;font-size:17px;font-weight:700;width:100%;max-width:100%!important;color:#111827}
+.tile-input.locked{background:#f3f4f6!important;border-radius:8px;color:#9ca3af;cursor:not-allowed}
+.tile-input.pct-input{max-width:90px!important;width:90px}
 .tile-input.placeholder-text{font-size:12px;font-style:italic;font-weight:400;color:#9ca3af!important}
 .tile-unit{font-size:11px;color:#9ca3af}
 .tile-input::placeholder{color:#9ca3af;font-weight:400;font-style:italic}
 .hero-input::placeholder{color:#6b7280;font-weight:400;font-style:italic}
 .tile-unitsel{font-size:12px;padding:6px;margin-top:4px}
-.tile-switch-row{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.tile-switch-row{display:flex;align-items:center;gap:8px;margin-top:8px;margin-bottom:2px}
 .tile-switch-row span{font-size:12px;font-weight:700;color:#374151!important}
 
 .sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:50}
@@ -91,7 +103,7 @@ select.unitsel{font-size:13px;padding:8px 6px}
 
 <div class="card">
 <div class="app-header">
- <div><h1>Sludgulator</h1><span class="app-version">v.1.2</span></div>
+ <div><h1>Sludgulator</h1><span class="app-version">v.1.3</span></div>
  <div class="settings-group">
   <span class="settings-label">settings</span>
   <button class="icon-btn" id="settings-btn" aria-label="Settings">&#9881;</button>
@@ -99,9 +111,14 @@ select.unitsel{font-size:13px;padding:8px 6px}
 </div>
 
 <div class="toggle" id="processmode"><button class="active" data-process="process">PROCESS</button><button data-process="jartest">JAR TEST</button></div>
+<div class="compare-row">
+ <label class="switch"><input type="checkbox" id="compare-switch"><span class="switch-slider"></span></label>
+ <span>Compare</span>
+</div>
 
-<button class="solve-row" id="solve-row" style="margin-top:14px">
- <span><span class="solve-row-label">Solve for</span><span class="solve-row-value" id="solve-row-value">Dose (lbs/DT)</span></span>
+<label class="solve-heading" style="margin-top:14px">Solve For</label>
+<button class="solve-row" id="solve-row">
+ <span class="solve-row-value" id="solve-row-value">Dose (lbs/DT)</span>
  <span class="chevron">&#9662;</span>
 </button>
 
@@ -122,16 +139,46 @@ select.unitsel{font-size:13px;padding:8px 6px}
 
 <div class="sheet-overlay hidden" id="settings-sheet-overlay">
 <div class="sheet">
-<div class="sheet-title">Density Settings</div>
+<div style="display:flex;align-items:center;gap:6px">
+ <div class="sheet-title" style="margin:0">Jar Test Defaults</div>
+ <button class="info-btn" id="jt-info-btn" aria-label="Info">&#9432;</button>
+</div>
+<div class="switch-state-row">
+ <label class="switch light-switch"><input type="checkbox" id="jtdefaults-switch" checked><span class="switch-slider"></span></label>
+ <span id="jtdefaults-state-label">ON</span>
+</div>
+<p class="note hidden" id="jt-info-text" style="margin:6px 0 10px;text-align:left">When on, these values automatically fill Polymer Concentration and Sludge Sample Size whenever Jar Test inputs are entered or cleared.</p>
+<div class="density-row">
+<div><label>Polymer Concentration (C<sub>p</sub>)</label><div class="row"><input class="entry" readonly id="v-jtcp" data-key="jtcp" placeholder="-Enter-" value="0.5"><span class="unit">%</span></div></div>
+<div><label>Sludge Sample Size (F<sub>s</sub>)</label><div class="row"><input class="entry" readonly id="v-jtfs" data-key="jtfs" placeholder="-Enter-" value="100"><span class="unit">mL</span></div></div>
+</div>
+
+<div style="display:flex;align-items:center;gap:6px;margin-top:22px">
+ <div class="sheet-title" style="margin:0">Density Settings</div>
+ <button class="info-btn" id="density-info-btn" aria-label="Info">&#9432;</button>
+</div>
+<p class="note hidden" id="density-info-text" style="margin:6px 0 10px;text-align:left">Density edits apply only while this app session is open. Reopening restores &rho;<sub>p</sub> 8.60 and &rho;<sub>s</sub> 8.34.</p>
 <div class="toggle" id="densitymode"><button class="active" data-density="default">DEFAULT</button><button data-density="excluded">EXCLUDED</button><button data-density="custom">CUSTOM</button></div>
 <div class="density-row">
-<div><label>Polymer (&rho;<sub>p</sub>)</label><div class="row"><input class="entry locked" readonly id="v-dp" data-key="dp" value="8.60"><span class="unit">lb/gal</span></div></div>
-<div><label>Sludge (&rho;<sub>s</sub>)</label><div class="row"><input class="entry locked" readonly id="v-ds" data-key="ds" value="8.34"><span class="unit">lb/gal</span></div></div>
+<div><label>Polymer (&rho;<sub>p</sub>)</label><div class="row"><input class="entry locked" readonly id="v-dp" data-key="dp" placeholder="-Enter-" value="8.60"><span class="unit" id="v-dp-unit">lb/gal</span><select class="unitsel hidden" id="u-dp"><option value="lbgal">lb/gal</option><option value="gml">g/mL</option></select></div></div>
+<div><label>Sludge (&rho;<sub>s</sub>)</label><div class="row"><input class="entry locked" readonly id="v-ds" data-key="ds" placeholder="-Enter-" value="8.34"><span class="unit" id="v-ds-unit">lb/gal</span><select class="unitsel hidden" id="u-ds"><option value="lbgal">lb/gal</option><option value="gml">g/mL</option></select></div></div>
 </div>
-<div class="formula" style="margin-top:16px">Neat Dose = (F<sub>p</sub> &times; C<sub>p</sub> &times; &rho;<sub>p</sub>) / ((F<sub>s</sub> &times; C<sub>s</sub> &times; &rho;<sub>s</sub>) / 2000)<br>
-Active Dose = Neat Dose &times; %Active<br>
-<small>&rho;<sub>p</sub> = 8.60 lb/gal &nbsp;&bull;&nbsp; &rho;<sub>s</sub> = 8.34 lb/gal</small></div>
-<p class="note">Density edits apply only while this app session is open. Reopening restores &rho;<sub>p</sub> 8.60 and &rho;<sub>s</sub> 8.34.</p>
+
+<button class="solve-row" id="formulas-toggle" style="margin-top:22px;margin-bottom:0">
+ <span class="solve-row-value" style="font-size:15px">Reference Formulas</span>
+ <span class="chevron" id="formulas-chevron">&#9662;</span>
+</button>
+<div class="formula hidden" id="formulas-content" style="margin-top:10px">
+<div class="frac-row">
+ <span class="frac-label">Neat Dose&nbsp;=</span>
+ <div class="frac">
+  <div class="frac-num">2000 &times; F<sub>p</sub> &times; C<sub>p</sub> &times; &rho;<sub>p</sub></div>
+  <div class="frac-bar"></div>
+  <div class="frac-den">F<sub>s</sub> &times; C<sub>s</sub> &times; &rho;<sub>s</sub></div>
+ </div>
+</div>
+<div style="font-weight:700">Active Dose = Neat Dose &times; %Active</div>
+</div>
 </div>
 </div>
 
@@ -153,6 +200,11 @@ Active Dose = Neat Dose &times; %Active<br>
 <script>
 const D0=8.60,S0=8.34;
 let dp=D0,ds=S0,densitymode="default",processmode="process",doseMode="neat";
+let dpUnit="lbgal", dsUnit="lbgal";
+const GML_TO_LBGAL=8.34540445;
+const toLbGalDensity=(val,u)=>u==="gml"?val*GML_TO_LBGAL:val;
+const fromLbGalDensity=(val,u)=>u==="gml"?val/GML_TO_LBGAL:val;
+let jtDefaultCp=0.5, jtDefaultFs=100, jtDefaultsEnabled=true;
 const v={neatdose:null,activedose:null,fp:null,cp:null,fs:null,cs:null,active:null};
 const $=x=>document.getElementById(x);
 
@@ -197,9 +249,8 @@ function renderSolveSheet(){
 function switchRowHTML(dark){
  let rowCls = dark?"switch-row":"tile-switch-row";
  return `<div class="${rowCls}">
-  <span>NEAT</span>
   <label class="switch"><input type="checkbox" id="active-switch" ${doseMode==="active"?"checked":""}><span class="switch-slider"></span></label>
-  <span>+ %Active</span>
+  <span>% Active</span>
  </div>`;
 }
 
@@ -207,18 +258,18 @@ function doseHeroHTML(){
  let sw=switchRowHTML(true);
  if(doseMode==="neat"){
   return `<div class="hero-card">
-   ${sw}
-   <div class="hero-label" style="margin-top:12px">Neat Dose (lbs/DT)</div>
+   <div class="hero-label">Neat Dose (lbs/DT)</div>
    <input class="entry hero-input result-input locked" readonly id="v-neatdose" data-key="neatdose" value="${v.neatdose??""}">
+   ${sw}
   </div>`;
  }
  return `<div class="hero-card">
-  ${sw}
   <div class="hero-grid">
    <div><div class="hero-sub">Neat Dose (lbs/DT)</div><input class="entry hero-input result-input locked" readonly id="v-neatdose" data-key="neatdose" value="${v.neatdose??""}"></div>
    <div><div class="hero-sub">Active Dose (lbs/DT)</div><input class="entry hero-input result-input locked" readonly id="v-activedose" data-key="activedose" value="${v.activedose??""}"></div>
   </div>
-  <div class="hero-active-row"><label>% Active</label><input class="entry" readonly id="v-active" data-key="active" placeholder="-Enter-" value="${v.active??""}"></div>
+  ${sw}
+  <div class="hero-active-row" style="display:flex;align-items:center;gap:8px"><input class="entry" style="max-width:110px" readonly id="v-active" data-key="active" placeholder="-Enter-" value="${v.active??""}"><span style="color:#9ca3af;font-size:14px">%</span></div>
  </div>`;
 }
 
@@ -226,27 +277,28 @@ function doseTileHTML(){
  let sw=switchRowHTML(false);
  if(doseMode==="neat"){
   return `<div class="field-tile span2">
-   ${sw}
-   <div class="ft-head" style="margin-top:8px">Neat Dose (lbs/DT)</div>
+   <div class="ft-head">Neat Dose (lbs/DT)</div>
    <input class="entry tile-input" readonly id="v-neatdose" data-key="neatdose" placeholder="-Enter-" value="${v.neatdose??""}">
+   ${sw}
   </div>`;
  }
  return `<div class="field-tile span2">
-  ${sw}
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
    <div><div class="ft-head">Neat Dose (lbs/DT)</div><input class="entry tile-input" readonly id="v-neatdose" data-key="neatdose" placeholder="-Enter-" value="${v.neatdose??""}"></div>
    <div><div class="ft-head">Active Dose (lbs/DT)</div><input class="entry tile-input" readonly id="v-activedose" data-key="activedose" placeholder="-Enter-" value="${v.activedose??""}"></div>
   </div>
-  <div style="margin-top:8px"><div class="ft-head">% Active</div><input class="entry tile-input" readonly id="v-active" data-key="active" placeholder="-Enter-" value="${v.active??""}"></div>
+  ${sw}
+  <div style="display:flex;align-items:center;gap:6px;margin-top:2px"><input class="entry tile-input pct-input" readonly id="v-active" data-key="active" placeholder="-Enter-" value="${v.active??""}"><span class="tile-unit">%</span></div>
  </div>`;
 }
 
 function fieldTileHTML(k,meta){
  let m=meta[k];
  let unitHtml = (processmode==="process"&&(k==="fp"||k==="fs")) ? unitSelectHTML(k,"tile-unitsel") : `<span class="tile-unit">${m[1]||""}</span>`;
+ let pinned = compareMode && processmode==="jartest" && k==="cp";
  return `<div class="field-tile">
-  <div class="ft-head">${m[0]}</div>
-  <input class="entry tile-input" readonly id="v-${k}" data-key="${k}" placeholder="-Enter-" value="${v[k]??""}">
+  <div class="ft-head">${m[0]}${pinned?" <span style='color:#6b7280;font-weight:400'>(pinned)</span>":""}</div>
+  <input class="entry tile-input${pinned?" locked":""}" readonly id="v-${k}" data-key="${k}" placeholder="-Enter-" value="${v[k]??""}">
   ${unitHtml}
  </div>`;
 }
@@ -290,14 +342,22 @@ function canonicalX(x){
  if(processmode==="jartest") return x;
  return {...x, fp: x.fp!=null?toGpm(x.fp,fpUnit):null, fs: x.fs!=null?toGpm(x.fs,fsUnit):null};
 }
-function neat(x){if([x.fp,x.cp,x.fs,x.cs].some(z=>z==null)||x.fs===0||x.cs===0)return null;
-return x.fp*(x.cp/100)*dp/((x.fs*(x.cs/100)*ds)/2000)}
+function densityLbGal(){
+ let dpL = densitymode==="custom" ? toLbGalDensity(dp,dpUnit) : dp;
+ let dsL = densitymode==="custom" ? toLbGalDensity(ds,dsUnit) : ds;
+ return [dpL,dsL];
+}
+function neat(x){if([x.fp,x.cp,x.fs,x.cs].some(z=>z==null)||x.fs===0||x.cs===0||dp==null||ds==null)return null;
+let [dpL,dsL]=densityLbGal();
+return x.fp*(x.cp/100)*dpL/((x.fs*(x.cs/100)*dsL)/2000)}
 function solveReverse(x,t,D){
+ if(dp==null||ds==null)return null;
+ let [dpL,dsL]=densityLbGal();
  let F=x.fp,C=x.cp,Fs=x.fs,Cs=x.cs;
- if(t==="fp"&&D!=null&&C!=null&&Fs!=null&&Cs!=null&&C!==0)return D*(Fs*(Cs/100)*ds)/(2000*(C/100)*dp);
- if(t==="cp"&&D!=null&&F!=null&&Fs!=null&&Cs!=null&&F!==0)return D*(Fs*(Cs/100)*ds)/(2000*F*dp)*100;
- if(t==="fs"&&D!=null&&F!=null&&C!=null&&Cs!=null&&D!==0)return F*(C/100)*dp*2000/(D*(Cs/100)*ds);
- if(t==="cs"&&D!=null&&F!=null&&C!=null&&Fs!=null&&D!==0)return F*(C/100)*dp*2000/(D*Fs*ds)*100;
+ if(t==="fp"&&D!=null&&C!=null&&Fs!=null&&Cs!=null&&C!==0)return D*(Fs*(Cs/100)*dsL)/(2000*(C/100)*dpL);
+ if(t==="cp"&&D!=null&&F!=null&&Fs!=null&&Cs!=null&&F!==0)return D*(Fs*(Cs/100)*dsL)/(2000*F*dpL)*100;
+ if(t==="fs"&&D!=null&&F!=null&&C!=null&&Cs!=null&&D!==0)return F*(C/100)*dpL*2000/(D*(Cs/100)*dsL);
+ if(t==="cs"&&D!=null&&F!=null&&C!=null&&Fs!=null&&D!==0)return F*(C/100)*dpL*2000/(D*Fs*dsL)*100;
  return null;
 }
 
@@ -365,6 +425,8 @@ function calc(){
 function keyDisplayLabel(key){
  if(key==="dp")return "Polymer (&rho;<sub>p</sub>)";
  if(key==="ds")return "Sludge (&rho;<sub>s</sub>)";
+ if(key==="jtcp")return "Jar Test Default C<sub>p</sub>";
+ if(key==="jtfs")return "Jar Test Default F<sub>s</sub>";
  if(key==="active")return "% Active";
  if(key==="neatdose")return "Neat Dose (lbs/DT)";
  if(key==="activedose")return "Active Dose (lbs/DT)";
@@ -382,6 +444,8 @@ function keypadUnitsHTML(key){
 function rawValueForKey(key){
  if(key==="dp")return dp;
  if(key==="ds")return ds;
+ if(key==="jtcp")return jtDefaultCp;
+ if(key==="jtfs")return jtDefaultFs;
  return v[key];
 }
 
@@ -439,15 +503,17 @@ function reconcileDoseInputs(editedKey){
 }
 
 function commitValue(key,val){
- if(key==="dp"){dp=val??0}
- else if(key==="ds"){ds=val??0}
+ if(key==="dp"){dp=val}
+ else if(key==="ds"){ds=val}
+ else if(key==="jtcp"){jtDefaultCp=val}
+ else if(key==="jtfs"){jtDefaultFs=val}
  else{v[key]=val}
  let el=$("v-"+key); if(el) el.value = val??"";
  let t=$("solve").value;
  if(t!=="dose" && (key==="neatdose"||key==="activedose"||key==="active")){
   reconcileDoseInputs(key);
  }
- if(key==="dp"||key==="ds") render();
+ if(key==="dp"||key==="ds"||key==="jtcp"||key==="jtfs") render();
  else calc();
 }
 document.body.addEventListener("click",e=>{
@@ -469,7 +535,7 @@ document.querySelectorAll(".keypad-grid button").forEach(b=>b.onclick=()=>{
  }
  renderKeypadDisplay();
 });
-const ZERO_BLOCKED_KEYS=new Set(["fp","cp","fs","cs","dp","ds"]);
+const ZERO_BLOCKED_KEYS=new Set(["dp","ds","jtcp","jtfs"]);
 function rejectZero(){
  let d=$("keypad-display");
  d.textContent="Can't be 0";
@@ -477,11 +543,12 @@ function rejectZero(){
  setTimeout(()=>{d.classList.remove("keypad-error");renderKeypadDisplay();},900);
 }
 $("keypad-enter").onclick=()=>{
- let num = (keypadStr===""||keypadStr===".") ? null : Number(keypadStr);
- if(num===0 && ZERO_BLOCKED_KEYS.has(keypadKey)){
+ let isZero = keypadStr!==""&&keypadStr!=="."&&Number(keypadStr)===0;
+ if(isZero && ZERO_BLOCKED_KEYS.has(keypadKey)){
   rejectZero();
   return;
  }
+ let num = (keypadStr===""||keypadStr==="."||isZero) ? null : Number(keypadStr);
  commitValue(keypadKey,num);
  closeKeypad();
 };
@@ -490,32 +557,140 @@ $("keypad-overlay").addEventListener("click",e=>{if(e.target.id==="keypad-overla
 $("solve-row").onclick=()=>{renderSolveSheet();$("solve-sheet-overlay").classList.remove("hidden")};
 $("solve-sheet-overlay").addEventListener("click",e=>{if(e.target.id==="solve-sheet-overlay")$("solve-sheet-overlay").classList.add("hidden")});
 $("settings-btn").onclick=()=>{$("settings-sheet-overlay").classList.remove("hidden")};
-$("settings-sheet-overlay").addEventListener("click",e=>{if(e.target.id==="settings-sheet-overlay")$("settings-sheet-overlay").classList.add("hidden")});
+$("jtdefaults-switch").onchange=e=>{
+ jtDefaultsEnabled=e.target.checked;
+ $("jtdefaults-state-label").textContent = jtDefaultsEnabled ? "ON" : "OFF";
+};
+$("jt-info-btn").onclick=()=>{$("jt-info-text").classList.toggle("hidden")};
+$("density-info-btn").onclick=()=>{$("density-info-text").classList.toggle("hidden")};
+$("u-dp").onchange=e=>{
+ let old=dpUnit; dpUnit=e.target.value;
+ if(dp!=null) dp=fromLbGalDensity(toLbGalDensity(dp,old),dpUnit);
+ $("v-dp").value = dp!=null?fmt(dp):"";
+ render();
+};
+$("u-ds").onchange=e=>{
+ let old=dsUnit; dsUnit=e.target.value;
+ if(ds!=null) ds=fromLbGalDensity(toLbGalDensity(ds,old),dsUnit);
+ $("v-ds").value = ds!=null?fmt(ds):"";
+ render();
+};
+$("formulas-toggle").onclick=()=>{
+ let hidden=$("formulas-content").classList.toggle("hidden");
+ $("formulas-chevron").innerHTML = hidden ? "&#9662;" : "&#9652;";
+};
+function closeSettingsSheet(){
+ $("settings-sheet-overlay").classList.add("hidden");
+ if(processmode==="jartest"){
+   v.cp = compareMode ? jtDefaultCp : (jtDefaultsEnabled ? jtDefaultCp : null);
+   v.fs = jtDefaultsEnabled ? jtDefaultFs : null;
+   render();
+ }
+}
+$("settings-sheet-overlay").addEventListener("click",e=>{if(e.target.id==="settings-sheet-overlay")closeSettingsSheet()});
+
+let modeStash={fp:null,fs:null,cp:null,cs:null,neatdose:null,activedose:null,active:null};
+let compareMode=false;
+$("compare-switch").onchange=e=>{compareMode=e.target.checked};
 
 document.querySelectorAll("#processmode button").forEach(b=>b.onclick=()=>{
- processmode=b.dataset.process;
+ let newMode=b.dataset.process;
+ if(newMode===processmode)return;
+ let oldTarget=$("solve").value;
+ let oldMode=processmode;
+
+ // capture the OLD mode's Fp/Fs on a common basis before anything changes:
+ // process => gpm-normalized rate, jar test => raw mL (already a plain volume)
+ let oldFpCanon=null, oldFsCanon=null;
+ if(oldMode==="process"){
+   oldFpCanon = v.fp!=null ? toGpm(v.fp,fpUnit) : null;
+   oldFsCanon = v.fs!=null ? toGpm(v.fs,fsUnit) : null;
+ }else{
+   oldFpCanon = v.fp; oldFsCanon = v.fs;
+ }
+ let oldCp = v.cp;
+
+ // Fp/Fs/Cp always stay mode-specific: Process's flow rate and Cp are independent
+ // of Jar Test's fixed batch volume and (when Compare is on) fixed reference Cp.
+ let savedFp=v.fp, savedFs=v.fs, savedCp=v.cp;
+ v.fp=modeStash.fp; v.fs=modeStash.fs; v.cp=modeStash.cp;
+ modeStash.fp=savedFp; modeStash.fs=savedFs; modeStash.cp=savedCp;
+
+ if(!compareMode){
+  let saved={cs:v.cs,neatdose:v.neatdose,activedose:v.activedose,active:v.active};
+  v.cs=modeStash.cs; v.neatdose=modeStash.neatdose; v.activedose=modeStash.activedose; v.active=modeStash.active;
+  modeStash.cs=saved.cs; modeStash.neatdose=saved.neatdose; modeStash.activedose=saved.activedose; modeStash.active=saved.active;
+ }
+
+ processmode=newMode;
  document.querySelectorAll("#processmode button").forEach(x=>x.classList.toggle("active",x===b));
- if(processmode==="jartest"){v.fs=100;v.cp=0.5;v.cs=null}
- else{if(v.fs===100)v.fs=null;if(v.cp===0.5)v.cp=null}
- populateSolveOptions();render();
+ if(processmode==="jartest"){
+   if(compareMode){
+     v.cp = jtDefaultCp;
+   }else if(jtDefaultsEnabled && v.cp==null){
+     v.cp = jtDefaultCp;
+   }
+   if(jtDefaultsEnabled && v.fs==null) v.fs=jtDefaultFs;
+ }
+
+ // Compare mode: Fp is recalculated to keep the resulting dose equivalent between
+ // the two views. Since Jar Test's Cp is pinned to its own fixed reference value
+ // (which may differ from Process's Cp), the conversion has to account for both
+ // the Fp:Fs ratio AND the Cp difference, not just Fp:Fs alone.
+ if(compareMode && oldFpCanon!=null && oldFsCanon!=null && oldFsCanon!==0 && oldCp!=null && oldCp!==0 && v.cp!=null && v.cp!==0){
+   let round6=n=>Math.round(n*1e6)/1e6;
+   if(processmode==="jartest"){
+     v.fp = round6(v.fs * (oldFpCanon*oldCp) / (oldFsCanon*v.cp));
+   }else{
+     let newFsCanon = v.fs!=null ? toGpm(v.fs,fsUnit) : null;
+     if(newFsCanon!=null){
+       let fpGpm = newFsCanon * (oldFpCanon*oldCp) / (oldFsCanon*v.cp);
+       v.fp = round6(fromGpm(fpGpm,fpUnit));
+     }
+   }
+ }
+
+ populateSolveOptions();
+ if(compareMode && oldTarget==="dose" && v.neatdose!=null){
+   $("solve").value="fp";
+ }
+ render();
 });
 
 document.querySelectorAll("#densitymode button").forEach(b=>b.onclick=()=>{
+ let prevMode=densitymode;
  densitymode=b.dataset.density;
  document.querySelectorAll("#densitymode button").forEach(x=>x.classList.toggle("active",x===b));
  if(densitymode==="default"){
    dp=D0;ds=S0;$("v-dp").value=fmt(D0);$("v-ds").value=fmt(S0);
    $("v-dp").classList.add("locked");$("v-ds").classList.add("locked");
+   $("v-dp-unit").classList.remove("hidden");$("v-ds-unit").classList.remove("hidden");
+   $("u-dp").classList.add("hidden");$("u-ds").classList.add("hidden");
  }else if(densitymode==="excluded"){
-   dp=1;ds=1;$("v-dp").value=fmt(1);$("v-ds").value=fmt(1);
+   dp=1;ds=1;$("v-dp").value="Excluded";$("v-ds").value="Excluded";
    $("v-dp").classList.add("locked");$("v-ds").classList.add("locked");
+   $("v-dp-unit").classList.add("hidden");$("v-ds-unit").classList.add("hidden");
+   $("u-dp").classList.add("hidden");$("u-ds").classList.add("hidden");
  }else{
+   if(prevMode==="excluded"){dp=D0;ds=S0;}
    $("v-dp").classList.remove("locked");$("v-ds").classList.remove("locked");
+   $("v-dp-unit").classList.add("hidden");$("v-ds-unit").classList.add("hidden");
+   $("u-dp").classList.remove("hidden");$("u-ds").classList.remove("hidden");
+   dpUnit="lbgal";dsUnit="lbgal";$("u-dp").value="lbgal";$("u-ds").value="lbgal";
+   $("v-dp").value = dp!=null ? fmt(dp) : "";
+   $("v-ds").value = ds!=null ? fmt(ds) : "";
  }
  render();
 });
 
-$("clear").onclick=()=>{Object.keys(v).forEach(k=>v[k]=null);render()};
+$("clear").onclick=()=>{
+ Object.keys(v).forEach(k=>v[k]=null);
+ if(processmode==="jartest"){
+   if(compareMode){v.cp=jtDefaultCp;if(jtDefaultsEnabled)v.fs=jtDefaultFs;}
+   else if(jtDefaultsEnabled){v.fs=jtDefaultFs;v.cp=jtDefaultCp;}
+ }
+ render();
+};
 
 // hidden native select shim (kept for internal state compatibility)
 (function(){
